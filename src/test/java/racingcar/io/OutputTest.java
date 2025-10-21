@@ -11,8 +11,8 @@ import java.util.List;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import racingcar.domain.car.dto.CurrentCarProgressDTO;
-import racingcar.domain.race.dto.CurrentRaceStatusDTO;
+import racingcar.domain.car.dto.res.CurrentCarProgressDTO;
+import racingcar.domain.race.dto.res.CurrentRaceStatusDTO;
 import racingcar.io.impl.OutputImpl;
 
 class OutputTest {

@@ -1,8 +1,8 @@
 package racingcar.io.impl;
 
 import java.util.List;
-import racingcar.domain.car.dto.CurrentCarProgressDTO;
-import racingcar.domain.race.dto.CurrentRaceStatusDTO;
+import racingcar.domain.car.dto.res.CurrentCarProgressDTO;
+import racingcar.domain.race.dto.res.CurrentRaceStatusDTO;
 import racingcar.io.Output;
 
 public class OutputImpl implements Output {

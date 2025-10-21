@@ -1,6 +1,6 @@
 package racingcar.io;
 
-import racingcar.domain.race.dto.CurrentRaceStatusDTO;
+import racingcar.domain.race.dto.res.CurrentRaceStatusDTO;
 
 public interface Output {
 
