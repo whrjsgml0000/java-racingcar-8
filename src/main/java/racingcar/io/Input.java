@@ -1,6 +1,14 @@
 package racingcar.io;
 
-public interface Input {
+import camp.nextstep.edu.missionutils.Console;
 
-    String readLine();
+public class Input {
+
+    public String readLine() {
+        try {
+            return Console.readLine();
+        } finally {
+            Console.close();
+        }
+    }
 }

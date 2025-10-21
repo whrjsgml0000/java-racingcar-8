@@ -13,7 +13,6 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import racingcar.domain.car.dto.res.CurrentCarProgressDTO;
 import racingcar.domain.race.dto.res.CurrentRaceStatusDTO;
-import racingcar.io.impl.OutputImpl;
 
 class OutputTest {
 
@@ -22,7 +21,7 @@ class OutputTest {
 
     @BeforeEach
     void setUp() {
-        output = new OutputImpl();
+        output = new Output();
         outputStream = new ByteArrayOutputStream();
         System.setOut(new PrintStream(outputStream));
     }
