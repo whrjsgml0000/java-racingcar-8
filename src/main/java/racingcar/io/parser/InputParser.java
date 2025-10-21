@@ -2,13 +2,8 @@ package racingcar.io.parser;
 
 import java.util.List;
 
-public class InputParser {
+public interface InputParser {
 
-    public List<String> parseCarNames(String rawCarNames) {
-        return null;
-    }
-
-    public int parseTryCount(String rawTryCount) {
-        return 0;
-    }
+    List<String> parseCarNames(String rawCarNames);
+    int parseTryCount(String rawTryCount);
 }
