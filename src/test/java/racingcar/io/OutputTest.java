@@ -13,6 +13,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import racingcar.domain.car.dto.res.CurrentCarProgressDTO;
 import racingcar.domain.race.dto.res.CurrentRaceStatusDTO;
+import racingcar.io.converter.GraphConverter;
 
 class OutputTest {
 
@@ -21,7 +22,7 @@ class OutputTest {
 
     @BeforeEach
     void setUp() {
-        output = new Output();
+        output = new Output(new GraphConverter());
         outputStream = new ByteArrayOutputStream();
         System.setOut(new PrintStream(outputStream));
     }
@@ -45,7 +46,7 @@ class OutputTest {
     }
 
     @Test
-    void printCurrentRaceStatusToGraph() {
+    void printCurrentRaceStatus() {
         // given
         List<CurrentCarProgressDTO> currentCarProgressDTOs = new ArrayList<>();
         currentCarProgressDTOs.add(new CurrentCarProgressDTO("pony",2));
@@ -53,7 +54,7 @@ class OutputTest {
         CurrentRaceStatusDTO currentRaceStatusDTO = new CurrentRaceStatusDTO(currentCarProgressDTOs);
 
         // when
-        output.printCurrentRaceStatusToGraph(currentRaceStatusDTO);
+        output.printCurrentRaceStatus(currentRaceStatusDTO);
 
         // then
         assertThat(outputStream.toString())
