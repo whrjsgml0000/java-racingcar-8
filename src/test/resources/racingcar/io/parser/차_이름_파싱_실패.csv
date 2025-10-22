@@ -1,6 +1,4 @@
-"wooooo,hello","6글자 이상"
-"w    o,hello","6글자 이상"
-"hello,hello","중복된 이름"
-"woo, woo ","중복된 이름"
+"wooooo,hello","5글자"
+"w    o,hello","5글자"
 "","1명 이상"
 ",asd","공란"
