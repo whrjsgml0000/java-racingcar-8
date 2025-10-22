@@ -1,5 +1,7 @@
 package racingcar.config;
 
+import java.util.List;
+import racingcar.controller.RacingController;
 import racingcar.io.IOHandler;
 import racingcar.io.Input;
 import racingcar.io.Output;
@@ -7,6 +9,8 @@ import racingcar.io.converter.Converter;
 import racingcar.io.converter.GraphConverter;
 import racingcar.io.parser.InputParser;
 import racingcar.io.parser.impl.InputParserImpl;
+import racingcar.service.RacingService;
+import racingcar.service.impl.RacingServiceImpl;
 
 public class ComponentManager {
     private static final ComponentManager INSTANCE = new ComponentManager();
@@ -15,6 +19,8 @@ public class ComponentManager {
     private final Input input;
     private final Output output;
     private final IOHandler ioHandler;
+    private final RacingService racingService;
+    private final RacingController racingController;
 
     private ComponentManager() {
         converter = new GraphConverter();
@@ -22,9 +28,15 @@ public class ComponentManager {
         input = new Input(inputParser);
         output = new Output(converter);
         ioHandler = new IOHandler(input, output);
+        racingService = new RacingServiceImpl();
+        racingController = new RacingController(racingService, ioHandler);
     }
 
     public static ComponentManager getInstance() {
         return INSTANCE;
+    }
+
+    public void run() {
+        racingController.run();
     }
 }

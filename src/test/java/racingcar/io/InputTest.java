@@ -2,19 +2,26 @@ package racingcar.io;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+import camp.nextstep.edu.missionutils.Console;
 import java.io.ByteArrayInputStream;
 import java.nio.charset.StandardCharsets;
 import java.util.Arrays;
 import java.util.List;
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
 import racingcar.io.parser.InputParser;
 
 class InputTest {
 
+    @AfterEach
+    void tearDown() {
+        Console.close();
+    }
+
     Input input = new Input(new InputParser() {
         @Override
         public List<String> parseCarNames(String rawCarNames) {
-            return List.of("hello","my","name");
+            return List.of("hello", "my", "name");
         }
 
         @Override

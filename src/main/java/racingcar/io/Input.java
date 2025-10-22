@@ -13,20 +13,12 @@ public class Input {
     }
 
     public List<String> readCarNames() {
-        try {
-            String rawCarNames = Console.readLine();
-            return inputParser.parseCarNames(rawCarNames);
-        } finally {
-            Console.close();
-        }
+        String rawCarNames = Console.readLine();
+        return inputParser.parseCarNames(rawCarNames);
     }
 
     public int readTryCount() {
-        try {
-            String rawTryCount = Console.readLine();
-            return inputParser.parseTryCount(rawTryCount);
-        } finally {
-            Console.close();
-        }
+        String rawTryCount = Console.readLine();
+        return inputParser.parseTryCount(rawTryCount);
     }
 }

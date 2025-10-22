@@ -1,7 +1,16 @@
 package racingcar;
 
+import camp.nextstep.edu.missionutils.Console;
+import racingcar.config.ComponentManager;
+
 public class Application {
+
     public static void main(String[] args) {
-        // TODO: 프로그램 구현
+        ComponentManager instance = ComponentManager.getInstance();
+        try {
+            instance.run();
+        } finally {
+            Console.close();
+        }
     }
 }
