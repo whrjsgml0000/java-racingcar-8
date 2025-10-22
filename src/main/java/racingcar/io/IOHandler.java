@@ -2,7 +2,6 @@ package racingcar.io;
 
 import java.util.List;
 import racingcar.domain.race.dto.res.CurrentRaceStatusDTO;
-import racingcar.io.parser.InputParser;
 
 public class IOHandler {
 
