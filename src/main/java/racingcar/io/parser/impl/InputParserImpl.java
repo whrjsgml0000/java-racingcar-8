@@ -1,5 +1,6 @@
 package racingcar.io.parser.impl;
 
+import java.math.BigDecimal;
 import java.util.Arrays;
 import java.util.List;
 import racingcar.io.parser.InputParser;
@@ -7,7 +8,8 @@ import racingcar.io.parser.InputParser;
 public class InputParserImpl implements InputParser {
 
     private static final int MAX_CAR_NAME_LENGTH = 5;
-    private static final int ZERO = 0;
+    private static final int MIN_TRY_COUNT = 0;
+    public static final int MAX_TRY_COUNT_LENGTH = 3;
 
     @Override
     public List<String> parseCarNames(String rawCarNames) {
@@ -39,10 +41,16 @@ public class InputParserImpl implements InputParser {
 
     @Override
     public int parseTryCount(String rawTryCount) {
-        int parsedTryCount = Integer.parseInt(rawTryCount);
-
-        if(parsedTryCount < ZERO){
+        if(!rawTryCount.chars().allMatch(Character::isDigit)) {
             throw new IllegalArgumentException("시도 횟수는 양의 정수만 입력 가능합니다.");
+        }
+        if(rawTryCount.length() > MAX_TRY_COUNT_LENGTH){
+            throw new IllegalArgumentException("시도 횟수는 " + MAX_TRY_COUNT_LENGTH + "자리 수까지 가능합니다.");
+        }
+
+        int parsedTryCount = Integer.parseInt(rawTryCount);
+        if(parsedTryCount <= MIN_TRY_COUNT){
+            throw new IllegalArgumentException("시도 횟수는 최소 " + MIN_TRY_COUNT + "회 이상만 가능합니다.");
         }
         return parsedTryCount;
     }
