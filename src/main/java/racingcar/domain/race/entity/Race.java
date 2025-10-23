@@ -1,12 +1,8 @@
 package racingcar.domain.race.entity;
 
-import java.util.ArrayList;
 import java.util.LinkedHashMap;
-import java.util.List;
 import java.util.Map;
-import racingcar.domain.car.dto.res.CurrentCarProgressDTO;
 import racingcar.domain.car.entity.Car;
-import racingcar.domain.race.dto.res.CurrentRaceStatusDTO;
 
 public class Race {
 
@@ -33,7 +29,7 @@ public class Race {
         remainTryCount--;
 
         for (Car car : currentRaceStatus.keySet()) {
-            if(car.go()) {
+            if (car.go()) {
                 currentRaceStatus.compute(car, (currentCar, progress) -> progress += 1);
             }
         }
