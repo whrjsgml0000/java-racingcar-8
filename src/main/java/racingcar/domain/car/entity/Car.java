@@ -16,8 +16,8 @@ public class Car {
         return name;
     }
 
-    public State go() {
-        return condition.getNextAction();
+    public boolean go() {
+        return condition.getNextAction() == State.GO;
     }
 
     public enum State {

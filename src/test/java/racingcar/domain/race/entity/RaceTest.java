@@ -1,8 +1,11 @@
 package racingcar.domain.race.entity;
 
-import static org.assertj.core.api.Assertions.*;
-import static org.junit.jupiter.api.Assertions.*;
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
+import static org.assertj.core.api.Assertions.tuple;
+import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 
+import java.util.Map.Entry;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
@@ -30,7 +33,7 @@ class RaceTest {
 
     @Nested
     @DisplayName("레이스 진행")
-    class RunOnce{
+    class RunOnce {
 
         @Test
         @DisplayName("1번 레이스 진행 후 종료 확인")
@@ -52,18 +55,17 @@ class RaceTest {
         void runOnce1() {
             // given
             Race race = new Race(2);
-            Car car = new Car("car1", () -> State.GO);
-            Car car1 = new Car("car2", () -> State.STOP);
-            race.registerCar(car);
+            Car car1 = new Car("car1", () -> State.GO);
+            Car car2 = new Car("car2", () -> State.STOP);
             race.registerCar(car1);
+            race.registerCar(car2);
 
             // when & then
             assertDoesNotThrow(race::runOnce);
             assertThat(race.isEnd()).isFalse();
+            assertThat(race.getCurrentRaceStatus())
+                    .extractingFromEntries(current -> current.getKey().getName(), Entry::getValue)
+                    .contains(tuple("car1", 1), tuple("car2", 0));
         }
-    }
-
-    @Test
-    void getCurrentRaceStatus() {
     }
 }
