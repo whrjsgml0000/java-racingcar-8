@@ -36,6 +36,6 @@ public class Race {
     }
 
     public Map<Car, Integer> getCurrentRaceStatus() {
-        return currentRaceStatus;
+        return new LinkedHashMap<>(currentRaceStatus);
     }
 }
