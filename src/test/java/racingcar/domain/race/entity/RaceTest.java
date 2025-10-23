@@ -67,5 +67,28 @@ class RaceTest {
                     .extractingFromEntries(current -> current.getKey().getName(), Entry::getValue)
                     .contains(tuple("car1", 1), tuple("car2", 0));
         }
+
+        @Test
+        @DisplayName("레이스 끝날 때까지 진행상태 확인")
+        void runOnce2() {
+            // given
+            int tryCount = 5;
+            Race race = new Race(tryCount);
+            Car car1 = new Car("car1", () -> State.GO);
+            Car car2 = new Car("car2", () -> State.STOP);
+            race.registerCar(car1);
+            race.registerCar(car2);
+
+            // when & then
+            for (int i = 1; i <= tryCount; i++) {
+                assertThat(race.isEnd()).isFalse();
+                assertDoesNotThrow(race::runOnce);
+                assertThat(race.getCurrentRaceStatus())
+                        .extractingFromEntries(current -> current.getKey().getName(), Entry::getValue)
+                        .contains(tuple("car1", i), tuple("car2", 0));
+            }
+
+            assertThat(race.isEnd()).isTrue();
+        }
     }
 }
