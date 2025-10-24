@@ -24,7 +24,6 @@ public class RacingController {
     }
 
     private void startRace(Race race) {
-        // ToDo : 리팩토링 해야됨.
         ioHandler.beforePrintRaceResult();
 
         while(!race.isEnd()){
