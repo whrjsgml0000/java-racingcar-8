@@ -1,2 +1,4 @@
 "hello,king",0,"시도 횟수"
 "helloo,king",5,"이름"
+"hello,hello",5,"이름"
+"hello,king",-1,"시도 횟수"
