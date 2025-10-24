@@ -83,7 +83,7 @@ class OutputTest {
             output.printWinner(winnersName);
 
             // then
-            assertThat(outputStream.toString()).contains("결과 : hello,king");
+            assertThat(outputStream.toString()).contains("최종 우승자 : hello,king");
         }
 
         @Test
@@ -96,7 +96,7 @@ class OutputTest {
             output.printWinner(winnerName);
 
             // then
-            assertThat(outputStream.toString()).contains("결과 : hello");
+            assertThat(outputStream.toString()).contains("최종 우승자 : hello");
         }
     }
 }

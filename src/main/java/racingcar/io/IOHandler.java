@@ -32,8 +32,9 @@ public class IOHandler {
         output.printCurrentRaceStatus(currentRaceStatusDTO);
     }
 
-    public void printlnMessage(String message) {
-        output.printlnMessage(message);
+    public void beforePrintRaceResult() {
+        output.printlnMessage("");
+        output.printlnMessage("실행 결과");
     }
 
     public void printWinner(List<String> raceWinner) {

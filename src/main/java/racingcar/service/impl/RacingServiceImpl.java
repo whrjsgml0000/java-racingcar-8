@@ -1,7 +1,9 @@
 package racingcar.service.impl;
 
 import java.util.List;
+import java.util.Map;
 import racingcar.domain.car.dto.req.CreateCarDTO;
+import racingcar.domain.car.entity.Car;
 import racingcar.domain.car.factory.CarFactory;
 import racingcar.domain.race.dto.res.CurrentRaceStatusDTO;
 import racingcar.domain.race.entity.Race;
@@ -28,11 +30,14 @@ public class RacingServiceImpl implements RacingService {
 
     @Override
     public CurrentRaceStatusDTO runOnce(Race race) {
-        return null;
+        race.runOnce();
+        Map<Car, Integer> currentRaceStatus = race.getCurrentRaceStatus();
+
+        return CurrentRaceStatusDTO.toDto(currentRaceStatus);
     }
 
     @Override
     public List<String> getRaceWinner(Race race) {
-        return List.of();
+        return race.getWinner().stream().map(Car::getName).toList();
     }
 }

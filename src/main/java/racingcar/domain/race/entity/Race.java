@@ -41,6 +41,9 @@ public class Race {
     }
 
     public void runOnce() {
+        if(isEnd()) {
+            return;
+        }
         remainTryCount--;
 
         for (Car car : currentRaceStatus.keySet()) {

@@ -25,7 +25,7 @@ public class RacingController {
 
     private void startRace(Race race) {
         // ToDo : 리팩토링 해야됨.
-        ioHandler.printlnMessage(System.lineSeparator() + "실행 결과");
+        ioHandler.beforePrintRaceResult();
 
         while(!race.isEnd()){
             CurrentRaceStatusDTO currentRaceStatus = racingService.runOnce(race);
