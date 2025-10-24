@@ -9,34 +9,41 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvFileSource;
+import racingcar.domain.car.dto.req.CreateCarDTO;
+import racingcar.domain.car.entity.Car;
 import racingcar.service.impl.RacingServiceImpl;
 
 class RacingServiceTest {
 
-    RacingService racingService = new RacingServiceImpl();
-
     @Nested
     @DisplayName("레이스 생성 테스트")
     class CreateRace {
-        
+
+        RacingService racingService = new RacingServiceImpl(createCarDTO -> {
+            return new Car(createCarDTO.getCarName(), null);
+        });
+
         @ParameterizedTest
         @CsvFileSource(resources = "레이스_생성_성공.csv")
         void success(String rawCarNames, int tryCount) {
             // given
-            List<String> carNames = Arrays.stream(rawCarNames.split(",")).toList();
+            List<CreateCarDTO> createCarDTOs = Arrays.stream(rawCarNames.split(","))
+                    .map(CreateCarDTO::new)
+                    .toList();
 
             // when & then
-            assertDoesNotThrow(() -> racingService.createRace(carNames, tryCount));
+            assertDoesNotThrow(() -> racingService.createRace(createCarDTOs, tryCount));
         }
 
         @ParameterizedTest
         @CsvFileSource(resources = "레이스_생성_실패.csv")
         void failure(String rawCarNames, int tryCount, String errorContainingMessage) {
             // given
-            List<String> carNames = Arrays.stream(rawCarNames.split(",")).toList();
-
+            List<CreateCarDTO> createCarDTOs = Arrays.stream(rawCarNames.split(","))
+                    .map(CreateCarDTO::new)
+                    .toList();
             // when
-            assertThatThrownBy(() -> racingService.createRace(carNames, tryCount))
+            assertThatThrownBy(() -> racingService.createRace(createCarDTOs, tryCount))
                     .isExactlyInstanceOf(IllegalArgumentException.class)
                     .hasMessageContaining(errorContainingMessage);
         }

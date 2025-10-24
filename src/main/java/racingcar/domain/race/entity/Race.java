@@ -10,20 +10,33 @@ public class Race {
 
     private static final int START_LINE = 0;
     private final Map<Car, Integer> currentRaceStatus = new LinkedHashMap<>();
+    private Rule rule;
     private int remainTryCount;
 
     public Race(int remainTryCount) {
+        this(remainTryCount, new SimpleRacingRule());
+    }
+
+    public Race(int remainTryCount, Rule rule){
         this.remainTryCount = remainTryCount;
+        this.rule = rule;
+        rule.validateRace(this);
+    }
+
+    public void setRule(Rule rule) {
+        this.rule = rule;
     }
 
     public boolean isEnd() {
         return remainTryCount <= 0;
     }
 
+    public int getRemainTryCount() {
+        return remainTryCount;
+    }
+
     public void registerCar(Car car) {
-        if (currentRaceStatus.containsKey(car)) {
-            throw new IllegalArgumentException("동일한 이름을 가진 차를 등록할 수 없습니다.");
-        }
+        rule.validateCar(car, currentRaceStatus.keySet());
         currentRaceStatus.put(car, START_LINE);
     }
 

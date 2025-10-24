@@ -28,7 +28,7 @@ class RaceTest {
         // when & then
         assertThatThrownBy(() -> race.registerCar(hello1))
                 .isExactlyInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining("동일한");
+                .hasMessageContaining("중복된");
     }
 
     @Nested

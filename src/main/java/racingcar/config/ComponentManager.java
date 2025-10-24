@@ -1,7 +1,8 @@
 package racingcar.config;
 
-import java.util.List;
 import racingcar.controller.RacingController;
+import racingcar.domain.car.factory.CarFactory;
+import racingcar.domain.car.factory.impl.CarFactoryImpl;
 import racingcar.io.IOHandler;
 import racingcar.io.Input;
 import racingcar.io.Output;
@@ -19,6 +20,7 @@ public class ComponentManager {
     private final Input input;
     private final Output output;
     private final IOHandler ioHandler;
+    private final CarFactory carFactory;
     private final RacingService racingService;
     private final RacingController racingController;
 
@@ -28,7 +30,8 @@ public class ComponentManager {
         input = new Input(inputParser);
         output = new Output(converter);
         ioHandler = new IOHandler(input, output);
-        racingService = new RacingServiceImpl();
+        carFactory = new CarFactoryImpl();
+        racingService = new RacingServiceImpl(carFactory);
         racingController = new RacingController(racingService, ioHandler);
     }
 

@@ -1,6 +1,7 @@
 package racingcar.io;
 
 import java.util.List;
+import racingcar.domain.car.dto.req.CreateCarDTO;
 import racingcar.domain.race.dto.res.CurrentRaceStatusDTO;
 
 public class IOHandler {
@@ -15,9 +16,11 @@ public class IOHandler {
         this.output = output;
     }
 
-    public List<String> requestCarNames() {
+    public List<CreateCarDTO> requestCarNames() {
         output.printlnMessage(REQUEST_CAR_NAMES_MESSAGE);
-        return input.readCarNames();
+        return input.readCarNames().stream()
+                .map(CreateCarDTO::new)
+                .toList();
     }
 
     public int requestTryCount() {

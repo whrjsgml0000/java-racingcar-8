@@ -1,6 +1,7 @@
 package racingcar.service;
 
 import java.util.List;
+import racingcar.domain.car.dto.req.CreateCarDTO;
 import racingcar.domain.race.dto.res.CurrentRaceStatusDTO;
 import racingcar.domain.race.entity.Race;
 
@@ -9,11 +10,11 @@ public interface RacingService {
     /**
      * 레이스를 만들고, 초기 차량을 등록한다.
      *
-     * @param carNames 레이스에 등록할 초기 차량
-     * @param tryCount 레이스 시도 횟수
+     * @param createCarDTOs 레이스에 등록할 초기 차량
+     * @param tryCount      레이스 시도 횟수
      * @return 생성된 Race
      */
-    Race createRace(List<String> carNames, int tryCount);
+    Race createRace(List<CreateCarDTO> createCarDTOs, int tryCount);
 
     /**
      * 레이스를 한 번 진행한다.
