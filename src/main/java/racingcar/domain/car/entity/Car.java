@@ -1,7 +1,5 @@
 package racingcar.domain.car.entity;
 
-import java.util.Objects;
-
 public class Car {
 
     private final String name;
@@ -22,20 +20,5 @@ public class Car {
 
     public enum Action {
         GO, STOP
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (o == null || getClass() != o.getClass()) {
-            return false;
-        }
-
-        Car car = (Car) o;
-        return Objects.equals(name, car.name);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hashCode(name);
     }
 }
