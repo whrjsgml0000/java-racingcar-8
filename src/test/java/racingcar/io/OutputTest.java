@@ -9,7 +9,10 @@ import java.io.PrintStream;
 import java.util.ArrayList;
 import java.util.List;
 import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.AutoClose;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 import racingcar.domain.car.dto.res.CurrentCarProgressDTO;
 import racingcar.domain.race.dto.res.CurrentRaceStatusDTO;
@@ -34,6 +37,7 @@ class OutputTest {
     }
 
     @Test
+    @DisplayName("메시지 출력 확인")
     void printlnMessage() {
         // given
         String message = "woowa";
@@ -46,6 +50,7 @@ class OutputTest {
     }
 
     @Test
+    @DisplayName("현재 레이스 상황 출력 확인")
     void printCurrentRaceStatus() {
         // given
         List<CurrentCarProgressDTO> currentCarProgressDTOs = new ArrayList<>();
@@ -62,5 +67,36 @@ class OutputTest {
                 .contains("king : ---")
                 .doesNotContain("pony : ---")
                 .doesNotContain("king : ----");
+    }
+
+    @Nested
+    @DisplayName("우승자 출력")
+    class PrintWinner{
+
+        @Test
+        @DisplayName("공동 우승 출력 양식 확인")
+        void 공동_우승() {
+            // given
+            List<String> winnersName = List.of("hello","king");
+
+            // when
+            output.printWinner(winnersName);
+
+            // then
+            assertThat(outputStream.toString()).contains("결과 : hello,king");
+        }
+
+        @Test
+        @DisplayName("단독 우승 출력 양식 확인")
+        void 단독_우승() {
+            // given
+            List<String> winnerName = List.of("hello");
+
+            // when
+            output.printWinner(winnerName);
+
+            // then
+            assertThat(outputStream.toString()).contains("결과 : hello");
+        }
     }
 }

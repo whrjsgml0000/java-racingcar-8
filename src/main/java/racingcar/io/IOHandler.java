@@ -28,4 +28,12 @@ public class IOHandler {
     public void printCurrentRaceStatus(CurrentRaceStatusDTO currentRaceStatusDTO) {
         output.printCurrentRaceStatus(currentRaceStatusDTO);
     }
+
+    public void printlnMessage(String message) {
+        output.printlnMessage(message);
+    }
+
+    public void printWinner(List<String> raceWinner) {
+        output.printWinner(raceWinner);
+    }
 }

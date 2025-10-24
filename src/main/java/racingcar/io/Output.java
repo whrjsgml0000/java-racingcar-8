@@ -25,4 +25,9 @@ public class Output {
 
         System.out.println(currentRaceStatusBuilder);
     }
+
+    public void printWinner(List<String> raceWinner) {
+        String winners = String.join(",", raceWinner);
+        System.out.println("결과 : " + winners);
+    }
 }
