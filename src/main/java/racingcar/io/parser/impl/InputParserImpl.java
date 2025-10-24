@@ -1,6 +1,5 @@
 package racingcar.io.parser.impl;
 
-import java.math.BigDecimal;
 import java.util.Arrays;
 import java.util.List;
 import racingcar.io.parser.InputParser;
@@ -34,6 +33,8 @@ public class InputParserImpl implements InputParser {
         if(carName.isBlank()){
             throw new IllegalArgumentException("이름을 공란으로 둘 수 없습니다.");
         }
+
+        // ToDo: 이거 Input 에서 낼 오류가 맞는가?
         if(carName.length() > MAX_CAR_NAME_LENGTH){
             throw new IllegalArgumentException("이름은 " + MAX_CAR_NAME_LENGTH + "글자를 넘길 수 없습니다.");
         }
