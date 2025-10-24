@@ -1,5 +1,9 @@
 package racingcar.domain.race.entity;
 
+import static racingcar.exception.Error.CANT_REGISTER_WITH_DUPLICATED_NAME;
+import static racingcar.exception.Error.NOT_VALID_CAR_NAME_LENGTH;
+import static racingcar.exception.Error.NOT_VALID_TRY_COUNT;
+
 import java.util.Set;
 import java.util.stream.Collectors;
 import racingcar.domain.car.entity.Car;
@@ -29,7 +33,7 @@ public class SimpleRacingRule implements Rule {
 
     private void validateRaceTryCount(int raceRemainTryCount) {
         if (raceRemainTryCount < minimumTryCount || raceRemainTryCount > maximumTryCount) {
-            throw new IllegalArgumentException("시도 횟수가 적절하지 않습니다.");
+            throw new IllegalArgumentException(NOT_VALID_TRY_COUNT.print());
         }
     }
 
@@ -46,13 +50,13 @@ public class SimpleRacingRule implements Rule {
 
     private void validateCarNameLength(String name) {
         if (name.length() < minimumNameLength || name.length() > maximumNameLength) {
-            throw new IllegalArgumentException("등록하려는 이름의 길이가 적절하지 않습니다.");
+            throw new IllegalArgumentException(NOT_VALID_CAR_NAME_LENGTH.print());
         }
     }
 
     private void validateCarNameDuplicated(String carName, Set<String> registeredCarNames) {
         if (registeredCarNames.contains(carName)) {
-            throw new IllegalArgumentException("중복된 이름으로 참가할 수 없습니다.");
+            throw new IllegalArgumentException(CANT_REGISTER_WITH_DUPLICATED_NAME.print());
         }
     }
 

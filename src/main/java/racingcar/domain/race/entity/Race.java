@@ -1,5 +1,7 @@
 package racingcar.domain.race.entity;
 
+import static racingcar.exception.Error.RACE_NOT_FINISHED;
+
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
@@ -59,7 +61,7 @@ public class Race {
 
     public List<Car> getWinner() {
         if (!isEnd()) {
-            throw new IllegalArgumentException("아직 경기가 끝나지 않았습니다. -> 입력 오류 아님.");
+            throw new IllegalArgumentException(RACE_NOT_FINISHED.print());
         }
         int firstProgress = currentRaceStatus.values().stream()
                 .mapToInt(value -> value)

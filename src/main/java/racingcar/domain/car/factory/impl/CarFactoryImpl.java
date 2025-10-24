@@ -1,5 +1,7 @@
 package racingcar.domain.car.factory.impl;
 
+import static racingcar.exception.Error.NOT_EXIST_CONDITION;
+
 import racingcar.domain.car.dto.req.CreateCarDTO;
 import racingcar.domain.car.entity.Car;
 import racingcar.domain.car.entity.RandomNumberCondition;
@@ -12,6 +14,6 @@ public class CarFactoryImpl implements CarFactory {
         if(createCarDTO.getConditionName().equals("randomNumber")) {
             return new Car(createCarDTO.getCarName(), new RandomNumberCondition());
         }
-        throw new IllegalArgumentException("condition 등록 오류");
+        throw new IllegalArgumentException(NOT_EXIST_CONDITION.print());
     }
 }

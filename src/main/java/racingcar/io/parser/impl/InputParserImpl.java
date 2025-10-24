@@ -1,5 +1,10 @@
 package racingcar.io.parser.impl;
 
+import static racingcar.exception.Error.MINIMUM_PARTICIPANT_CAR;
+import static racingcar.exception.Error.NAME_SHOULD_NOT_BE_BLANK;
+import static racingcar.exception.Error.SHOULD_INPUT_TRY_COUNT;
+import static racingcar.exception.Error.TRY_COUNT_SHOULD_BE_POSITIVE_INTEGER;
+
 import java.util.ArrayList;
 import java.util.List;
 import racingcar.io.parser.InputParser;
@@ -21,7 +26,7 @@ public class InputParserImpl implements InputParser {
 
     private static void hasAnyParticipant(String rawCarNames) {
         if (rawCarNames.isBlank()) {
-            throw new IllegalArgumentException("1명 이상 참가를 해야합니다.");
+            throw new IllegalArgumentException(MINIMUM_PARTICIPANT_CAR.print());
         }
     }
 
@@ -43,17 +48,17 @@ public class InputParserImpl implements InputParser {
 
     private static void isValidName(String carName) {
         if (carName.isEmpty()) {
-            throw new IllegalArgumentException("이름을 공란으로 둘 수 없습니다.");
+            throw new IllegalArgumentException(NAME_SHOULD_NOT_BE_BLANK.print());
         }
     }
 
     @Override
     public int parseTryCount(String rawTryCount) {
         if (rawTryCount.isBlank()) {
-            throw new IllegalArgumentException("시도 횟수 입력을 하셔야합니다.");
+            throw new IllegalArgumentException(SHOULD_INPUT_TRY_COUNT.print());
         }
         if (!rawTryCount.chars().allMatch(Character::isDigit)) {
-            throw new IllegalArgumentException("시도 횟수는 양의 정수만 입력 가능합니다.");
+            throw new IllegalArgumentException(TRY_COUNT_SHOULD_BE_POSITIVE_INTEGER.print());
         }
 
         return Integer.parseInt(rawTryCount);
