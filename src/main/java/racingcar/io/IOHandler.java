@@ -8,6 +8,9 @@ public class IOHandler {
 
     private static final String REQUEST_CAR_NAMES_MESSAGE = "경주할 자동차 이름을 입력하세요.(이름은 쉼표(,) 기준으로 구분)";
     private static final String REQUEST_TRY_COUNT_MESSAGE = "시도할 횟수는 몇 회인가요?";
+    private static final String RACE_RESULT = "실행 결과";
+    /// 실행 결과 출력 전 개행 개수
+    private static final int BEFORE_PRINT_RACE_RESULT_NEW_LINE_COUNT = 1;
     private final Input input;
     private final Output output;
 
@@ -33,8 +36,7 @@ public class IOHandler {
     }
 
     public void beforePrintRaceResult() {
-        output.printlnMessage("");
-        output.printlnMessage("실행 결과");
+        output.printlnMessage(RACE_RESULT, BEFORE_PRINT_RACE_RESULT_NEW_LINE_COUNT);
     }
 
     public void printWinner(List<String> raceWinner) {

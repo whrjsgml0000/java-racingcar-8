@@ -7,6 +7,8 @@ import racingcar.io.converter.Converter;
 
 public class Output {
 
+    private static final String DEFAULT_WINNERS_JOIN_DELIMITER = ",";
+    private static final String LAST_WINNER = "최종 우승자 : ";
     private final Converter converter;
 
     public Output(Converter converter) {
@@ -15,6 +17,11 @@ public class Output {
 
     public void printlnMessage(String message) {
         System.out.println(message);
+    }
+
+    public void printlnMessage(String message, int newLineCount) {
+        System.out.print(System.lineSeparator().repeat(newLineCount));
+        printlnMessage(message);
     }
 
     public void printCurrentRaceStatus(CurrentRaceStatusDTO currentRaceStatusDTO) {
@@ -27,7 +34,7 @@ public class Output {
     }
 
     public void printWinner(List<String> raceWinner) {
-        String winners = String.join(",", raceWinner);
-        System.out.println("최종 우승자 : " + winners);
+        String winners = String.join(DEFAULT_WINNERS_JOIN_DELIMITER, raceWinner);
+        System.out.println(LAST_WINNER + winners);
     }
 }

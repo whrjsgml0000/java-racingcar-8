@@ -11,11 +11,13 @@ import racingcar.io.parser.InputParser;
 
 public class InputParserImpl implements InputParser {
 
+    private static final char DEFAULT_DELIMITER = ',';
+
     @Override
     public List<String> parseCarNames(String rawCarNames) {
         hasAnyParticipant(rawCarNames);
 
-        List<String> carNames = split(rawCarNames, ',').stream()
+        List<String> carNames = split(rawCarNames, DEFAULT_DELIMITER).stream()
                 .map(String::trim)
                 .toList();
 
