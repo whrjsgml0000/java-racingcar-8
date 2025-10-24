@@ -10,11 +10,11 @@ import racingcar.domain.car.entity.Car;
 
 public class SimpleRacingRule implements Rule {
 
-    public static final int DEFAULT_MINIMUM_TRY_COUNT = 1;
-    public static final int DEFAULT_MAXIMUM_TRY_COUNT = 100;
-    public static final int DEFAULT_MINIMUM_NAME_LENGTH = 1;
-    public static final int DEFAULT_MAXIMUM_NAME_LENGTH = 5;
-    public static final boolean DEFAULT_ALLOW_DUPLICATED_NAME = false;
+    private static final int DEFAULT_MINIMUM_TRY_COUNT = 1;
+    private static final int DEFAULT_MAXIMUM_TRY_COUNT = 100;
+    private static final int DEFAULT_MINIMUM_NAME_LENGTH = 1;
+    private static final int DEFAULT_MAXIMUM_NAME_LENGTH = 5;
+    private static final boolean DEFAULT_ALLOW_DUPLICATED_NAME = false;
 
     private int minimumTryCount = DEFAULT_MINIMUM_TRY_COUNT;
     private int maximumTryCount = DEFAULT_MAXIMUM_TRY_COUNT;
@@ -73,11 +73,11 @@ public class SimpleRacingRule implements Rule {
     }
 
     static class SimpleRacingRuleBuilder {
-        int minimumTryCount = DEFAULT_MINIMUM_TRY_COUNT;
-        int maximumTryCount = DEFAULT_MAXIMUM_TRY_COUNT;
-        int minimumNameLength = DEFAULT_MINIMUM_NAME_LENGTH;
-        int maximumNameLength = DEFAULT_MAXIMUM_NAME_LENGTH;
-        boolean allowDuplicatedName = DEFAULT_ALLOW_DUPLICATED_NAME;
+        private int minimumTryCount = DEFAULT_MINIMUM_TRY_COUNT;
+        private int maximumTryCount = DEFAULT_MAXIMUM_TRY_COUNT;
+        private int minimumNameLength = DEFAULT_MINIMUM_NAME_LENGTH;
+        private int maximumNameLength = DEFAULT_MAXIMUM_NAME_LENGTH;
+        private boolean allowDuplicatedName = DEFAULT_ALLOW_DUPLICATED_NAME;
 
         public SimpleRacingRuleBuilder minimumTryCount(int minimumTryCount) {
             this.minimumTryCount = minimumTryCount;
