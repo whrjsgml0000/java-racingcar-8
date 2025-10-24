@@ -10,7 +10,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 import racingcar.domain.car.entity.Car;
-import racingcar.domain.car.entity.Car.State;
+import racingcar.domain.car.entity.Car.Action;
 
 class RaceTest {
 
@@ -40,8 +40,8 @@ class RaceTest {
         void runOnce() {
             // given
             Race race = new Race(1);
-            Car car = new Car("car1", () -> State.GO);
-            Car car1 = new Car("car2", () -> State.STOP);
+            Car car = new Car("car1", () -> Action.GO);
+            Car car1 = new Car("car2", () -> Action.STOP);
             race.registerCar(car);
             race.registerCar(car1);
 
@@ -55,8 +55,8 @@ class RaceTest {
         void runOnce1() {
             // given
             Race race = new Race(2);
-            Car car1 = new Car("car1", () -> State.GO);
-            Car car2 = new Car("car2", () -> State.STOP);
+            Car car1 = new Car("car1", () -> Action.GO);
+            Car car2 = new Car("car2", () -> Action.STOP);
             race.registerCar(car1);
             race.registerCar(car2);
 
@@ -74,8 +74,8 @@ class RaceTest {
             // given
             int tryCount = 5;
             Race race = new Race(tryCount);
-            Car car1 = new Car("car1", () -> State.GO);
-            Car car2 = new Car("car2", () -> State.STOP);
+            Car car1 = new Car("car1", () -> Action.GO);
+            Car car2 = new Car("car2", () -> Action.STOP);
             race.registerCar(car1);
             race.registerCar(car2);
 

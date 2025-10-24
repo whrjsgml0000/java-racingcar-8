@@ -4,7 +4,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 import org.assertj.core.data.Percentage;
 import org.junit.jupiter.api.Test;
-import racingcar.domain.car.entity.Car.State;
+import racingcar.domain.car.entity.Car.Action;
 
 class RandomNumberConditionTest {
 
@@ -17,10 +17,10 @@ class RandomNumberConditionTest {
 
         // when
         for (int i = 0; i < 10000; i++) {
-            State nextAction = condition.getNextAction();
-            if (nextAction == State.GO) {
+            Action nextAction = condition.getNextAction();
+            if (nextAction == Action.GO) {
                 goCnt++;
-            } else if (nextAction == State.STOP) {
+            } else if (nextAction == Action.STOP) {
                 stopCnt++;
             }
         }

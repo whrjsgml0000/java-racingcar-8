@@ -17,10 +17,10 @@ public class Car {
     }
 
     public boolean go() {
-        return condition.getNextAction() == State.GO;
+        return condition.getNextAction() == Action.GO;
     }
 
-    public enum State {
+    public enum Action {
         GO, STOP
     }
 

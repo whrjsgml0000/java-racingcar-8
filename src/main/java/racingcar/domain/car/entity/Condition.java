@@ -1,7 +1,7 @@
 package racingcar.domain.car.entity;
 
-import racingcar.domain.car.entity.Car.State;
+import racingcar.domain.car.entity.Car.Action;
 
 public interface Condition {
-    State getNextAction();
+    Action getNextAction();
 }
